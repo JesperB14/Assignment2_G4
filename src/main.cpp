@@ -55,13 +55,8 @@ ISR(TIMER0_COMPA_vect){
 }
 
 ISR(ADC_vect){
-  if (ADC > 511){
-    OCR1A = ICR1;
-    OCR1B = ICR1-(ADC*0.001953-1)*ICR1;
-  } else {
-    OCR1A = (ADC*0.001957)*ICR1;
-    OCR1B = ICR1;
-  } 
+  OCR1B = ICR1; 
+  OCR1A = ICR1 - ICR1*(ADC*0.000978);
 }
 
 void loop() {
